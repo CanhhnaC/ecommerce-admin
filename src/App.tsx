@@ -1,26 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Admin, Resource } from "react-admin";
+import {
+  firebaseAuthProvider as authProvider,
+  firebaseDataProvider as dataProvider,
+} from "src/config/firebase";
 
-function App() {
+import { product } from "./modules";
+
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Admin dataProvider={dataProvider} authProvider={authProvider}>
+      <Resource name="products" {...product} />
+    </Admin>
   );
-}
+};
 
 export default App;
